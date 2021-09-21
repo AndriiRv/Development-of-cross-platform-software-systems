@@ -1,14 +1,15 @@
 package button;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Dimension;
 
-public class MultiThreadPsychodelic implements Runnable {
+public class MultiThreadRender implements Runnable {
 
     private final JPanel jPanel;
     private final boolean isDifferentColor;
 
-    public MultiThreadPsychodelic(JPanel jPanel, boolean isDifferentColor) {
+    public MultiThreadRender(JPanel jPanel, boolean isDifferentColor) {
         this.jPanel = jPanel;
         this.isDifferentColor = isDifferentColor;
     }
@@ -16,20 +17,20 @@ public class MultiThreadPsychodelic implements Runnable {
     @Override
     public void run() {
         try {
-            method();
+            multithreadingRender();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    private void method() throws InterruptedException {
+    private void multithreadingRender() throws InterruptedException {
         if (this.isDifferentColor) {
             for (long i = 0; i < Long.MAX_VALUE; i++) {
-                mainSetup(setupColor(), new Dimension(50, 50));
+                render(setupColor(), new Dimension(50, 50));
             }
         } else {
             for (long i = 0; i < Long.MAX_VALUE; i++) {
-                mainSetup(setupColor(), setupDimension());
+                render(setupColor(), setupDimension());
             }
         }
     }
@@ -47,8 +48,8 @@ public class MultiThreadPsychodelic implements Runnable {
         return new Dimension(width, height);
     }
 
-    private void mainSetup(Color color, Dimension dimension) throws InterruptedException {
-        Thread.sleep(250);
+    private void render(Color color, Dimension dimension) throws InterruptedException {
+        Thread.sleep(50);
         Button button = new Button()
                 .setBackgroundColor(color)
                 .setupSize((int) dimension.getWidth(), (int) dimension.getHeight());

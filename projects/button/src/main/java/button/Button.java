@@ -9,8 +9,6 @@ public class Button extends JComponent implements MouseListener {
 
     private final Color defaultColor = Color.GRAY;
 
-    private int initX;
-    private int initY;
     private int height;
     private int width;
 
@@ -38,7 +36,7 @@ public class Button extends JComponent implements MouseListener {
     @Override
     public void paint(Graphics g) {
         g.setColor(getBackgroundColor());
-        g.fillRect(initX, initY, width, height);
+        g.fillRect(0, 0, width, height);
     }
 
     public void mouseClicked(MouseEvent e) {
